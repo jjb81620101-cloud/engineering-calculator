@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工程計算機</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="calculator">
+    <div class="display">
+      <div class="expression" id="expression"></div>
+      <div class="result" id="result">0</div>
+      <div class="memory-indicator" id="memory-indicator"></div>
+    </div>
+    <div class="buttons">
+      <!-- Memory Row -->
+      <button class="btn mem" data-action="mc">MC</button>
+      <button class="btn mem" data-action="mr">MR</button>
+      <button class="btn mem" data-action="m+">M+</button>
+      <button class="btn mem" data-action="m-">M-</button>
+
+      <!-- Scientific Row -->
+      <button class="btn sci" data-action="sin">sin</button>
+      <button class="btn sci" data-action="cos">cos</button>
+      <button class="btn sci" data-action="tan">tan</button>
+      <button class="btn sci" data-action="log">log</button>
+      <button class="btn sci" data-action="ln">ln</button>
+
+      <!-- Scientific Row 2 -->
+      <button class="btn sci" data-action="sqrt">√</button>
+      <button class="btn sci" data-action="pow2">x²</button>
+      <button class="btn sci" data-action="pow">xʸ</button>
+      <button class="btn sci" data-value="π">π</button>
+      <button class="btn sci" data-value="e">e</button>
+
+      <!-- Parentheses & Percent -->
+      <button class="btn sci" data-value="(">(</button>
+      <button class="btn sci" data-value=")">)</button>
+      <button class="btn sci" data-action="percent">%</button>
+      <button class="btn sci" data-action="inv">1/x</button>
+
+      <!-- Clear Row -->
+      <button class="btn op" data-action="clear">C</button>
+      <button class="btn op" data-action="allclear">AC</button>
+
+      <!-- Number Row 1 -->
+      <button class="btn num" data-value="7">7</button>
+      <button class="btn num" data-value="8">8</button>
+      <button class="btn num" data-value="9">9</button>
+      <button class="btn op" data-action="divide">÷</button>
+
+      <!-- Number Row 2 -->
+      <button class="btn num" data-value="4">4</button>
+      <button class="btn num" data-value="5">5</button>
+      <button class="btn num" data-value="6">6</button>
+      <button class="btn op" data-action="multiply">×</button>
+
+      <!-- Number Row 3 -->
+      <button class="btn num" data-value="1">1</button>
+      <button class="btn num" data-value="2">2</button>
+      <button class="btn num" data-value="3">3</button>
+      <button class="btn op" data-action="subtract">−</button>
+
+      <!-- Number Row 4 -->
+      <button class="btn num" data-value="0">0</button>
+      <button class="btn num" data-value=".">.</button>
+      <button class="btn equal" data-action="equals">=</button>
+      <button class="btn op" data-action="add">+</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

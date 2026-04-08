@@ -1,0 +1,286 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #0f0f1a;
+  --card-bg: #1a1a2e;
+  --card-border: #2a2a4a;
+  --btn-num: #252540;
+  --btn-num-hover: #32325a;
+  --btn-op: #f39c12;
+  --btn-op-hover: #e67e22;
+  --btn-sci: #3d3d6b;
+  --btn-sci-hover: #4f4f8a;
+  --btn-mem: #16a085;
+  --btn-mem-hover: #1abc9c;
+  --btn-equal: #e74c3c;
+  --btn-equal-hover: #c0392b;
+  --glow-blue: rgba(52, 152, 219, 0.5);
+  --glow-orange: rgba(243, 156, 18, 0.5);
+  --glow-red: rgba(231, 76, 60, 0.5);
+  --glow-green: rgba(22, 160, 133, 0.5);
+  --text-light: #ecf0f1;
+  --text-dim: #7f8c8d;
+}
+
+body {
+  font-family: 'Segoe UI', 'PingFang TC', sans-serif;
+  background: var(--bg-dark);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-image: 
+    radial-gradient(ellipse at top, #1a1a3e 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, #0a0a1a 0%, transparent 50%);
+}
+
+.calculator {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 
+    0 0 40px rgba(52, 152, 219, 0.1),
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.display {
+  background: linear-gradient(135deg, #0a0a15, #151525);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.display::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.5), transparent);
+}
+
+.expression {
+  color: var(--text-dim);
+  font-size: 16px;
+  min-height: 24px;
+  word-break: break-all;
+  text-align: right;
+  width: 100%;
+}
+
+.result {
+  color: var(--text-light);
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-align: right;
+  width: 100%;
+  text-shadow: 0 0 20px var(--glow-blue);
+}
+
+.memory-indicator {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: var(--btn-mem);
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.memory-indicator.show {
+  opacity: 1;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 18px 8px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent);
+  border-radius: 10px 10px 0 0;
+  pointer-events: none;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Number buttons */
+.btn.num {
+  background: var(--btn-num);
+  color: var(--text-light);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.btn.num:hover {
+  background: var(--btn-num-hover);
+  box-shadow: 
+    0 4px 20px rgba(52, 152, 219, 0.2),
+    0 0 15px var(--glow-blue),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Operator buttons */
+.btn.op {
+  background: var(--btn-op);
+  color: white;
+  box-shadow: 
+    0 4px 15px rgba(243, 156, 18, 0.3),
+    0 0 20px var(--glow-orange);
+}
+
+.btn.op:hover {
+  background: var(--btn-op-hover);
+  box-shadow: 
+    0 4px 25px rgba(243, 156, 18, 0.5),
+    0 0 30px var(--glow-orange);
+}
+
+/* Scientific buttons */
+.btn.sci {
+  background: var(--btn-sci);
+  color: var(--text-light);
+  font-size: 16px;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.btn.sci:hover {
+  background: var(--btn-sci-hover);
+  box-shadow: 
+    0 4px 20px rgba(155, 89, 182, 0.3),
+    0 0 15px rgba(155, 89, 182, 0.3);
+}
+
+/* Memory buttons */
+.btn.mem {
+  background: var(--btn-mem);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 
+    0 4px 15px rgba(22, 160, 133, 0.3),
+    0 0 15px var(--glow-green);
+}
+
+.btn.mem:hover {
+  background: var(--btn-mem-hover);
+  box-shadow: 
+    0 4px 25px rgba(22, 160, 133, 0.5),
+    0 0 25px var(--glow-green);
+}
+
+/* Equal button */
+.btn.equal {
+  background: var(--btn-equal);
+  color: white;
+  grid-row: span 2;
+  height: auto;
+  box-shadow: 
+    0 4px 20px rgba(231, 76, 60, 0.4),
+    0 0 30px var(--glow-red);
+}
+
+.btn.equal:hover {
+  background: var(--btn-equal-hover);
+  box-shadow: 
+    0 4px 30px rgba(231, 76, 60, 0.6),
+    0 0 40px var(--glow-red);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .calculator {
+    padding: 15px;
+    border-radius: 16px;
+  }
+
+  .result {
+    font-size: 32px;
+  }
+
+  .btn {
+    padding: 14px 6px;
+    font-size: 18px;
+    border-radius: 8px;
+  }
+
+  .btn.sci {
+    font-size: 14px;
+  }
+
+  .btn.mem {
+    font-size: 12px;
+    padding: 10px 6px;
+  }
+
+  .buttons {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .btn {
+    padding: 12px 4px;
+    font-size: 16px;
+  }
+
+  .btn.sci {
+    font-size: 12px;
+  }
+}
+
+/* Glow animation on result change */
+@keyframes glow {
+  0% { text-shadow: 0 0 20px var(--glow-blue); }
+  50% { text-shadow: 0 0 40px var(--glow-blue), 0 0 60px var(--glow-blue); }
+  100% { text-shadow: 0 0 20px var(--glow-blue); }
+}
+
+.result.animate {
+  animation: glow 0.5s ease;
+}
